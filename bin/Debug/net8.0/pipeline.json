@@ -1,0 +1,56 @@
+{
+    "modules": [
+      {
+        "id": "module_1_intro",
+        "label": "Introduction",
+        "startDelay": 2,
+        "events": [
+          {
+            "type": "video",
+            "asset": "intro_kal.mp4",
+            "target": "main_screen",
+            "startAfter": 0
+          },
+          {
+            "type": "ui",
+            "action": "show_contract_ui",
+            "target": "tablet_all",
+            "startAfter": 5
+          },
+          {
+            "type": "vote",
+            "idElement": 1,
+            "target": "tablet_all",
+            "storeInApi": true,
+            "startAfter": 10
+          },
+          {
+            "type": "timer",
+            "duration": 30,
+            "onComplete": "next_event"
+          }
+        ]
+      },
+  
+      {
+        "id": "module_2_microexpressions",
+        "label": "Micro-expressions",
+        "startDelay": 0,
+        "events": [
+          {
+            "type": "image_sequence",
+            "assetList": ["face1.png", "face2.png", "face3.png"],
+            "target": "main_screen",
+            "voteEach": true,
+            "durationPerImage": 20
+          },
+          {
+            "type": "result_summary",
+            "source": "api",
+            "displayOn": "main_screen"
+          }
+        ]
+      }
+    ]
+  }
+  

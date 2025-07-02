@@ -1,0 +1,43 @@
+[
+    {
+        "Id": 1,
+        "Type": 1,
+        "Content": "http://localhost:5178/api/game/video/cherry-grove-minecraft-moewalls-com.ogv",
+        "Options": ["Option A", "Option B", "Option C", "Option D"],
+        "Reward": 200,
+        "Penalty": 100,
+        "IndexOfGoodOption": 2,
+        "Duration": 20
+    },
+    {
+      "Id": 2,
+      "Type": 0,
+      "Content": "What is your favorite color?",
+      "Options": ["Option A", "Option B", "Option C"],
+      "Reward": 100,
+      "Penalty": 50,
+      "IndexOfGoodOption": 1,
+      "Duration": 200
+    },
+    {
+      "Id": 3,
+      "Type": 1,
+      "Content": "https://www.youtube.com/watch?v=6ZfuNTqbHE8",
+      "Options": ["Option A", "Option B", "Option C", "Option D"],
+      "Reward": 200,
+      "Penalty": 100,
+      "IndexOfGoodOption": 2,
+      "Duration": 20
+    },
+    {
+      "Id": 4,
+      "Type": 0,
+      "Content": "What is your favorite food?",
+      "Options": ["Yes", "No"],
+      "Reward": 300,
+      "Penalty": 150,
+      "IndexOfGoodOption": 0,
+      "Duration": 30
+    }
+  ]
+  

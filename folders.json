@@ -1,0 +1,55 @@
+[
+    {
+      "Id": 1,
+      "CaseTitle": "Le Code Volé",
+      "CaseDescription": "Une fuite de données confidentielles à l'agence.",
+      "Suspects": [
+        {
+          "Id": 1,
+          "Name": "Émilie Moreau",
+          "VideoUrl": "emilie.mp4",
+          "Description": "Responsable IT récemment promue.",
+          "PsychologicalSigns": ["micro-expressions", "silence long"],
+          "Suspect" : "HeIsSincere"
+        },
+        {
+          "Id": 2,
+          "Name": "Julien Masson",
+          "VideoUrl": "julien.mp4",
+          "Description": "Ancien collègue jaloux.",
+          "PsychologicalSigns": ["regard fuyant"],
+          "Suspect" : "HeHidesSomething"
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "CaseTitle": "L’Affaire de la Boîte Noire",
+      "CaseDescription": "Un crash suspect dans les Alpes.",
+      "Suspects": [
+        {
+          "Id": 3,
+          "Name": "Capitaine Dubois",
+          "VideoUrl": "dubois.mp4",
+          "Description": "Commandant du vol.",
+          "PsychologicalSigns": ["mains moites"],
+          "Suspect" : "HeIsSincere"
+        }
+      ]
+    },
+    {
+      "Id": 3,
+      "CaseTitle": "Disparition de Kal",
+      "CaseDescription": "Kal ne s'est pas présenté à l'audience.",
+      "Suspects": [
+        {
+          "Id": 4,
+          "Name": "Kal lui-même",
+          "VideoUrl": "kal_intro.mp4",
+          "Description": "Il est peut-être coupable, ou victime.",
+          "PsychologicalSigns": ["mensonge direct", "visage neutre"],
+          "Suspect" : "HeIsSincere"
+        }
+      ]
+    }
+]
