@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GodotRestAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a545a3a4389c371a372d636ad37a373e8c40ccd5")]
 [assembly: System.Reflection.AssemblyProductAttribute("GodotRestAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GodotRestAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

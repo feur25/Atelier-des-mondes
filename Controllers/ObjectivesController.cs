@@ -9,11 +9,12 @@ public class ObjectivesController : ControllerBase {
     [HttpPost]
     public IActionResult AddObjective([FromBody] Objective obj) {
         if (obj == null) return BadRequest("Objective cannot be null");
-        obj.Id = ObjectiveManager.Objectives.Count > 0 ? ObjectiveManager.Objectives.Max(o => o.Id) + 1 : 1;
+        obj.Id = ObjectiveManager.GetNextId();
 
         ObjectiveManager.AddObjective(obj);
         return Ok(new { message = "Objective added" });
     }
+
 
     [HttpPost("progress/{id}")]
     public IActionResult UpdateProgress(int id, [FromBody] int progress) {
@@ -84,27 +85,71 @@ public class ObjectivesController : ControllerBase {
         return Ok(new { message = "Objective removed" });
     }
 
-    [HttpGet("canvas/pipieline")]
+    [HttpGet("canvas/pipeline")]
     public IActionResult GetCanvasPipeline() =>
         Ok(ObjectiveManager.Objectives.Select(o => o.Name));
 
-    [HttpGet("canvas/pipieline/{id}")]
+    [HttpGet("canvas/pipeline/{id}")]
     public IActionResult GetCanvasPipelineById(int id) {
         var obj = ObjectiveManager.Objectives.FirstOrDefault(o => o.Id == id);
         return obj == null ? NotFound(new { message = "Objective not found" }) : Ok(obj.Name);
     }
 
-    [HttpGet("canvas/pipieline/progress/{progressStatus}")]
+    [HttpGet("canvas/pipeline/progress/{progressStatus}")]
     public IActionResult GetCanvasPipelineByProgress(bool progressStatus) {
         var canvasNames = ObjectiveManager.Objectives
-            .Where(o => (bool) o.Progress == progressStatus)
+            .Where(o => {
+                if (o.Progress is bool boolValue)
+                    return boolValue == progressStatus;
+                else if (o.Progress is JsonElement jsonElement)
+                    return jsonElement.ValueKind == JsonValueKind.True ? true : false == progressStatus;
+                else if (o.Progress is int intValue)
+                    return (intValue != 0) == progressStatus;
+                else
+                    return Convert.ToBoolean(o.Progress?.ToString()) == progressStatus;
+            })
             .Select(o => o.Name)
             .ToList();
 
         return Ok(canvasNames);
     }
 
-    [HttpPost("canvas/pipieline")]
+    [HttpPost("canvas/pipeline/batch")]
+    public IActionResult AddCanvasPipelineBatch([FromBody] List<string> canvasNames) {
+        if (canvasNames == null || canvasNames.Count == 0) 
+            return BadRequest("Canvas names cannot be empty");
+        
+        var existingNames = ObjectiveManager.Objectives.Select(o => o.Name).ToHashSet();
+        var newNames = canvasNames.Where(name => !existingNames.Contains(name)).ToList();
+        
+        if (newNames.Count == 0) return Ok(new List<Objective>());
+        
+        var newObjectives = new List<Objective>();
+        
+        foreach (var name in newNames) {
+            var newObjective = new Objective {
+                Id = ObjectiveManager.Objectives.Count + newObjectives.Count + 1,
+                Name = name,
+                Progress = false,
+                Orded = ObjectiveManager.Objectives.Count + newObjectives.Count + 1
+            };
+            newObjectives.Add(newObjective);
+        }
+        
+        ObjectiveManager.Objectives.AddRange(newObjectives);
+        ObjectiveManager.SaveObjectives();
+        
+        return Ok(newObjectives);
+    }
+
+    [HttpDelete("canvas/pipeline/{id}")]
+    public IActionResult RemoveCanvasPipeline(int id) {
+        var result = ObjectiveManager.RemoveObjective(id);
+        if (!result) return NotFound(new { message = "Objective not found" });
+        return Ok(new { message = "Objective removed" });
+    }
+
+    [HttpPost("canvas/pipeline")]
     public IActionResult AddCanvasPipeline([FromBody] string canvasName) {
         if (string.IsNullOrWhiteSpace(canvasName)) return BadRequest("Canvas name cannot be empty");
 
@@ -118,4 +163,5 @@ public class ObjectivesController : ControllerBase {
         ObjectiveManager.AddObjective(newObjective);
         return Ok(new { message = "Canvas pipeline added", objective = newObjective });
     }
+
 }

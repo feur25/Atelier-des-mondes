@@ -41,3 +41,4 @@ C:\Users\Quentin\Desktop\GodotRestAPI\GodotRestAPI\bin\Debug\net8.0\runtimes\bro
 C:\Users\Quentin\Desktop\GodotRestAPI\GodotRestAPI\bin\Debug\net8.0\pipeline.json
 C:\Users\Quentin\Desktop\GodotRestAPI\GodotRestAPI\bin\Debug\net8.0\vote.json
 C:\Users\Quentin\Desktop\GodotRestAPI\GodotRestAPI\bin\Debug\net8.0\folders.json
+C:\Users\Quentin\Desktop\GodotRestAPI\GodotRestAPI\obj\Debug\net8.0\GodotRestAPI.sourcelink.json
